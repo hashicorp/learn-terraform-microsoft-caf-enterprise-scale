@@ -21,4 +21,31 @@ module "enterprise_scale" {
   deploy_corp_landing_zones   = local.deploy_corp_landing_zones
   deploy_online_landing_zones = local.deploy_online_landing_zones
   deploy_sap_landing_zones    = local.deploy_sap_landing_zones
+
+  # Define an additional "LearnTerraform" Management Group.
+  custom_landing_zones = {
+    "${local.root_id}-learn-tf" = {
+      display_name               = "LearnTerraform"
+      parent_management_group_id = "${local.root_id}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "default_empty"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+  }
+
+  # Configuration settings for management resources.
+  # These are used to ensure Azure Policy is correctly configured with the same 
+  # settings as the resources deployed by module.enterprise_scale_management.
+  # Please refer to file: settings.management.tf
+  deploy_management_resources    = true
+  configure_management_resources = local.configure_management_resources
+  subscription_id_management     = data.azurerm_client_config.management.subscription_id
+
+  # Configuration settings for connectivity resources.
+  # Uses default settings.
+  deploy_connectivity_resources = true
+  subscription_id_connectivity  = data.azurerm_client_config.connectivity.subscription_id
 }
