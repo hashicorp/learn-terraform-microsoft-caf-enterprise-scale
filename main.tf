@@ -2,7 +2,7 @@
 # Enterprise-scale and provide a base configuration.
 module "enterprise_scale" {
   source  = "Azure/caf-enterprise-scale/azurerm"
-  version = "~> 0.4.0"
+  version = ">= 1.0.0"
 
   providers = {
     azurerm              = azurerm
