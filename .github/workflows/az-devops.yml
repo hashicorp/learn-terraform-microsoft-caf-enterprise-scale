@@ -1,0 +1,53 @@
+variables:
+- group: LearnDevOps
+
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - .github/workflows
+
+stages:
+- stage: Validate
+  displayName: Validate
+  jobs:
+  - job: validate
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: TerraformInstaller@0
+      displayName: Install Terraform
+      inputs:
+        terraformVersion: '1.2.9'
+        
+        # Init
+    - task: TerraformCLI@0
+      displayName: Initialize Terraform
+      env:
+        ARM_SAS_TOKEN: $(sas_token)
+      inputs:
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)'
+        
+         # Validate
+    - task: TerraformCLI@0
+      displayName: Validate Config
+      inputs:
+        command: 'validate'
+        workingDirectory: '$(System.DefaultWorkingDirectory)'
+        
+        # Apply
+    - task: TerraformCLI@0
+      displayName: Apply Terraform Deployment
+      env:
+        ARM_SAS_TOKEN: $(sas_token)
+        ARM_CLIENT_ID: $(az_client_id)
+        ARM_CLIENT_SECRET: $(az_client_secret)
+        ARM_SUBSCRIPTION_ID: $(az_subscription)
+        ARM_TENANT_ID: $(az_tenant)
+      inputs:
+        command: 'apply'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/2021-05-11-ADO/vnet'
+        commandOptions: '-auto-approve'
