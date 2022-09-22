@@ -24,16 +24,16 @@ module "enterprise_scale" {
           
   # Define an additional "LearnTerraform" Management Group.
   custom_landing_zones = {
-          "${local.root_id}-learn-tf" = {
-                  display_name               = "LearnTerraform"
-                  parent_management_group_id = "${local.root_id}-landing-zones"
-                  subscription_ids           = []
-                          archetype_config = {
-                          archetype_id   = "default_empty"
-                          parameters     = {}
-                          access_control = {}
-                                            }
-                                         }
-                        }
+    "${local.root_id}-learn-tf" = {
+      display_name               = "LearnTerraform"
+      parent_management_group_id = "${local.root_id}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "default_empty"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+  }
 
 }
