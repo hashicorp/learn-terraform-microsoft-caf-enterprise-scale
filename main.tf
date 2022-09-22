@@ -21,19 +21,5 @@ module "enterprise_scale" {
           deploy_corp_landing_zones   = local.deploy_corp_landing_zones
           deploy_online_landing_zones = local.deploy_online_landing_zones
           deploy_sap_landing_zones    = local.deploy_sap_landing_zones
-          
-  # Define an additional "LearnTerraform" Management Group.
-  custom_landing_zones = {
-    "${local.root_id}-learn-tf" = {
-      display_name               = "LearnTerraform"
-      parent_management_group_id = "${local.root_id}-landing-zones"
-      subscription_ids           = []
-      archetype_config = {
-        archetype_id   = "default_empty"
-        parameters     = {}
-        access_control = {}
-      }
-    }
-  }
 
 }
