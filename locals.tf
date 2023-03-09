@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # The following locals are used to convert provided input variables to locals 
 # before use elsewhere in the module.
 

@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # Declare the Terraform Module for Cloud Adoption Framework
 # Enterprise-scale and provide a base configuration.
 module "enterprise_scale" {

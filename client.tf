@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # The following client config resources are used to dynamically extract 
 # connection settings from from the environment.
 

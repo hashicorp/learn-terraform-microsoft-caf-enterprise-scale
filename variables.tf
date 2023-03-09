@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 # The following variable are used to simplify the process of customizing 
 # important settings and provide the foundation for what needs to be true when 
 # deploying multiple instances of the module into a single Tenant.
